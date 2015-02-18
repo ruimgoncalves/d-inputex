@@ -1,7 +1,9 @@
 {
   "name": "d-input",
   "description": "Input elements for derbry",
-  "version": "0.2",
+  "version": "0.0.2",
+  "author" : "Rui Gonçalves",
+  "email" : "ruimgoncalves@gmail.com",
   "repository": {
     "type": "git",
     "url": "git:/github.com/ruimgoncalves/d-inputex.git"
