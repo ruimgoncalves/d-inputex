@@ -1,0 +1,38 @@
+<index: element="textareaex" attributes="type name value">
+  <textarea
+    as='mInput'
+    value="{{_page.value}}"
+    timeout="{{@timeout}}"
+
+    type="{{@type}}"
+    name="{{@name}}"
+    class="{{@class}}"
+    placeholder="{{@placeholder}}"
+    readonly="{{@readonly}}"
+    disabled="{{@disabled}}"
+    size="{{@size}}"
+    maxlength="{{@maxlength}}"
+    autocomplete="{{@autocomplete}}"
+    min="{{@min}}"
+    max="{{@max}}"
+    step="{{@step}}"
+    pattern="{{@pattern}}"
+    required="{{@required}}"
+    form="{{@form}}"
+    formaction="{{@formaction}}"
+    formenctype="{{@formenctype}}"
+    formmethod="{{@formmethod}}"
+    formtarget="{{@formtarget}}"
+    autofocus="{{@autofocus}}"
+    novalidate="{{@novalidate}}"
+    height="{{@height}}"
+    width="{{@width}}"
+    list="{{@list}}"
+    multiple="{{@multiple}}"
+
+    wrap="{{@wrap}}"
+    cols="{{@cols}}"
+    rows="{{@rows}}"
+
+    on-blur="commit($event, $element)"
+  >{{_page.value}}</textarea>
