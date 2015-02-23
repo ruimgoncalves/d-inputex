@@ -1,7 +1,7 @@
 {
   "name": "d-input",
   "description": "Input elements for derbry.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": {
     "name": "Rui Gonçalves",
     "email": "ruimgoncalves@gmail.com"
@@ -9,5 +9,16 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ruimgoncalves/d-inputex.git"
-  }
+  },
+  "readme": "# D-Input\r\n\r\nDerby input elements \"emits\" changes on every keystroke. This is great in some cases, but not so great for others.\r\n\r\nThis input elements will throttle changes until a timeout, enter key or a blur event is detected.\r\n\r\n####Install\r\n```sh\r\n$ npm i d-input --save\r\n```\r\n\r\n####Usage\r\nindex.coffee\r\n``` coffeescript\r\napp.use require('d-input')\r\n```\r\nindex.html\r\n``` html5\r\n<inputex type=\"text\" name=\"test1\" value=\"{{value}}\" timeout=\"5000\" />\r\n<textareaex type=\"text\" name=\"test2\" value=\"{{value}}\" />\r\n```\r\n\r\n###Notes\r\n  - **textareaex** components must supply a value attribute. `<textareaex>{{value}}</textareaex>` are not supported.\r\n  - default **timeout** is 2 seconds",
+  "readmeFilename": "README.md",
+  "gitHead": "20fd5198e154cea6c56171bdb75c1c8b9b89694a",
+  "bugs": {
+    "url": "https://github.com/ruimgoncalves/d-inputex/issues"
+  },
+  "homepage": "https://github.com/ruimgoncalves/d-inputex",
+  "_id": "d-input@0.0.4",
+  "scripts": {},
+  "_shasum": "30336def5f5e922dc05bbd8e7f456f0ef092a12f",
+  "_from": "d-input@latest"
 }
