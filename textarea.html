@@ -1,12 +1,11 @@
 <index: element="textareaex" attributes="type name value">
   <textarea
     as='mInput'
-    value="{{_page.value}}"
     timeout="{{@timeout}}"
 
     type="{{@type}}"
     name="{{@name}}"
-    class="{{@class}}"
+    class="{{@class}} {{if commitError}}hasError{{/}} {{if sending}}sending{{/}}"
     placeholder="{{@placeholder}}"
     readonly="{{@readonly}}"
     disabled="{{@disabled}}"
@@ -35,4 +34,4 @@
     rows="{{@rows}}"
 
     on-blur="commit($event, $element)"
-  >{{_page.value}}</textarea>
+  >{{innerValue}}</textarea>

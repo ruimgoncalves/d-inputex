@@ -6,15 +6,17 @@ module.exports = class Base
     component = @
 
     @model.setNull 'timeout', 2000 # default timeout
+    @model.setNull 'commitError', false
+    @model.setNull 'sending', false
 
     val = @model.get "value" or @model.get "content"
 
-    @model.set '_page.value', val
+    @model.set 'innerValue', val
 
     @model.on 'all', 'value', (event, val, older, other...) ->
       # external changes
       clearTimeout timeoutHandle
-      model.set '_page.value', val
+      model.set 'innerValue', val
 
     # this is a form of event binding
     dom.on 'keyup', component.mInput, (e) ->
@@ -35,14 +37,21 @@ module.exports = class Base
   changed : (ev, el)->
     component = @
 
-    #console.log "OnChange"
     clearTimeout timeoutHandle
+
     timeoutHandle = setTimeout ->
       component.commit()
     ,  @model.get 'timeout'
 
   commit : ()->
+    component = @
+
     clearTimeout timeoutHandle
-    return if @model.get('value') == @model.get('_page.value')
-    if @mInput.checkValidity()
-      @model.set 'value', @model.get('_page.value')
+
+    if @mInput.checkValidity() and @model.get('value') != @model.get('innerValue')
+      @model.set "sending", true
+      @model.set 'value', @model.get('innerValue'), (err, val)->
+        component.model.set "sending", false
+        component.model.set "commitError", err?
+        if err
+          component.emit 'servererror', err

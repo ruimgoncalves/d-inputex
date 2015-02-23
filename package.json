@@ -1,7 +1,8 @@
 {
   "name": "d-input",
   "description": "Input elements for derbry.",
-  "version": "0.0.5",
+  "version": "0.0.6",
+  "homepage": "https://github.com/ruimgoncalves/d-inputex",
   "author": {
     "name": "Rui Gonçalves",
     "email": "ruimgoncalves@gmail.com"
@@ -16,9 +17,5 @@
   "bugs": {
     "url": "https://github.com/ruimgoncalves/d-inputex/issues"
   },
-  "homepage": "https://github.com/ruimgoncalves/d-inputex",
-  "_id": "d-input@0.0.4",
-  "scripts": {},
-  "_shasum": "30336def5f5e922dc05bbd8e7f456f0ef092a12f",
-  "_from": "d-input@latest"
+  "scripts": {}
 }

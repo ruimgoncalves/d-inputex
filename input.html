@@ -1,12 +1,12 @@
 <index: element="inputex" attributes="type name value">
   <input
     as='mInput'
-    value="{{_page.value}}"
+    value="{{innerValue}}"
     timeout="{{@timeout}}"
 
     type="{{@type}}"
     name="{{@name}}"
-    class="{{@class}}"
+    class="{{@class}} {{if commitError}}hasError{{/}} {{if sending}}sending{{/}}"
     placeholder="{{@placeholder}}"
     readonly="{{@readonly}}"
     disabled="{{@disabled}}"
