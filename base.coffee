@@ -45,10 +45,11 @@ module.exports = class Base
 
   commit : ()->
     component = @
-
     clearTimeout timeoutHandle
 
-    if @mInput.checkValidity() and @model.get('value') != @model.get('innerValue')
+    isValid = @mInput.validity.customError or @mInput.checkValidity()
+
+    if isValid and @model.get('value') != @model.get('innerValue')
       @model.set "sending", true
       @model.set 'value', @model.get('innerValue'), (err, val)->
         component.model.set "sending", false
