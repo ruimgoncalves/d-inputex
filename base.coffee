@@ -53,5 +53,4 @@ module.exports = class Base
       @model.set 'value', @model.get('innerValue'), (err, val)->
         component.model.set "sending", false
         component.model.set "commitError", err?
-        if err
-          component.emit 'servererror', err
+        component.emit 'done', component.mInput, err, val
