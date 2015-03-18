@@ -1,57 +1,59 @@
 module.exports = class Base
 
-  timeoutHandle = null
+  constructor : ()->
+    @timeoutHandle = null
+
+  init : (model)->
+    model.setNull 'timeout', 2000 # default timeout
+    model.setNull 'commitError', false
+    model.setNull 'sending', false
+
+    val = model.get("value") or @model.get("content")
+    model.set 'innerValue', val
 
   create : (model, dom) ->
-    component = @
+    that = @
 
-    @model.setNull 'timeout', 2000 # default timeout
-    @model.setNull 'commitError', false
-    @model.setNull 'sending', false
-
-    val = @model.get "value" or @model.get "content"
-
-    @model.set 'innerValue', val
-
-    @model.on 'all', 'value', (event, val, older, other...) ->
-      # external changes
-      clearTimeout timeoutHandle
+    model.on 'change', 'value', (val, older, pass) ->
+      return if pass.internal
+      clearTimeout that.timeoutHandle
       model.set 'innerValue', val
 
     # this is a form of event binding
-    dom.on 'keyup', component.mInput, (e) ->
-      if e.keyCode == 13
-        #e.preventDefault()
-        component.commit()
+    dom.on 'keyup', that.mInput, (e) ->
+      if e.keyCode is 13
+        that.commit()
 
-    dom.on 'input', component.mInput, (e) ->
-      component.changed()
+    dom.on 'input', that.mInput, (e) ->
+      that.changed()
 
   destroy : () ->
-    clearTimeout timeoutHandle
+    that = @
+    clearTimeout that.timeoutHandle
 
   # this is other form of event binding
   onBlur : (ev, el)->
     @commit()
 
   changed : (ev, el)->
-    component = @
+    that = @
 
-    clearTimeout timeoutHandle
+    clearTimeout that.timeoutHandle
 
-    timeoutHandle = setTimeout ->
-      component.commit()
+    that.timeoutHandle = setTimeout ->
+      that.commit()
     ,  @model.get 'timeout'
 
   commit : ()->
-    component = @
-    clearTimeout timeoutHandle
+    that = @
+    clearTimeout that.timeoutHandle
 
     isValid = @mInput.validity.customError or @mInput.checkValidity()
 
     if isValid and @model.get('value') != @model.get('innerValue')
       @model.set "sending", true
-      @model.set 'value', @model.get('innerValue'), (err, val)->
-        component.model.set "sending", false
-        component.model.set "commitError", err?
-        component.emit 'done', component.mInput, err, val
+      @model.pass({inside : true}).set 'value', @model.get('innerValue'),
+        (err, val)->
+          that.model.set "sending", false
+          that.model.set "commitError", err?
+          that.emit 'done', that.mInput, err, val
