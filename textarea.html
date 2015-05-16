@@ -2,10 +2,10 @@
   <textarea
     as='mInput'
     timeout="{{@timeout}}"
+    class="{{@class}} {{if commitError}}hasError{{/}} {{if sending}}sending{{/}}"
 
     type="{{@type}}"
     name="{{@name}}"
-    class="{{@class}} {{if commitError}}hasError{{/}} {{if sending}}sending{{/}}"
     placeholder="{{@placeholder}}"
     readonly="{{@readonly}}"
     disabled="{{@disabled}}"
