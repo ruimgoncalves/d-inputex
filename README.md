@@ -45,3 +45,4 @@ app.proto.inpuDone = (elm, err, op)->
 ##Notes
   - **textareaex** components must supply a value attribute. `<textareaex>{{value}}</textareaex>` is not supported.
   - default **timeout** is 2 seconds
+  - disable **timeout** by setting it to 0
