@@ -40,9 +40,12 @@ module.exports = class Base
 
     clearTimeout that.timeoutHandle
 
+    t = @model.get 'timeout'
+    return if t == '0'
+
     that.timeoutHandle = setTimeout ->
       that.commit()
-    ,  @model.get 'timeout'
+    , t
 
   commit : ()->
     that = @
